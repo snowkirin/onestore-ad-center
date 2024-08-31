@@ -1,0 +1,282 @@
+[
+  {
+    "key": "ar",
+    "value": "ar",
+    "label": "Arabic (ar)"
+  },
+  {
+    "key": "hy",
+    "value": "hy",
+    "label": "Armenian (hy)"
+  },
+  {
+    "key": "az",
+    "value": "az",
+    "label": "Azerbaijani (az)"
+  },
+  {
+    "key": "bn",
+    "value": "bn",
+    "label": "Bengali (bn)"
+  },
+  {
+    "key": "bg",
+    "value": "bg",
+    "label": "Bulgarian (bg)"
+  },
+  {
+    "key": "my",
+    "value": "my",
+    "label": "Burmese (my)"
+  },
+  {
+    "key": "ca",
+    "value": "ca",
+    "label": "Catalan (ca)"
+  },
+  {
+    "key": "km",
+    "value": "km",
+    "label": "Central Khmer (km)"
+  },
+  {
+    "key": "zh",
+    "value": "zh",
+    "label": "Chinese (zh)"
+  },
+  {
+    "key": "zh_tw",
+    "value": "zh_tw",
+    "label": "Chinese Traditional (zh_tw)"
+  },
+  {
+    "key": "hr",
+    "value": "hr",
+    "label": "Croatian (hr)"
+  },
+  {
+    "key": "cs",
+    "value": "cs",
+    "label": "Czech (cs)"
+  },
+  {
+    "key": "da",
+    "value": "da",
+    "label": "Danish (da)"
+  },
+  {
+    "key": "nl",
+    "value": "nl",
+    "label": "Dutch, Flemish (nl)"
+  },
+  {
+    "key": "en",
+    "value": "en",
+    "label": "English (en)"
+  },
+  {
+    "key": "fi",
+    "value": "fi",
+    "label": "Finnish (fi)"
+  },
+  {
+    "key": "fr",
+    "value": "fr",
+    "label": "French (fr)"
+  },
+  {
+    "key": "ka",
+    "value": "ka",
+    "label": "Georgian (ka)"
+  },
+  {
+    "key": "de",
+    "value": "de",
+    "label": "German (de)"
+  },
+  {
+    "key": "el",
+    "value": "el",
+    "label": "Greek (el)"
+  },
+  {
+    "key": "gu",
+    "value": "gu",
+    "label": "Gujarati (gu)"
+  },
+  {
+    "key": "he",
+    "value": "he",
+    "label": "Hebrew (he, iw)"
+  },
+  {
+    "key": "hi",
+    "value": "hi",
+    "label": "Hindi (hi)"
+  },
+  {
+    "key": "hu",
+    "value": "hu",
+    "label": "Hungarian (hu)"
+  },
+  {
+    "key": "id",
+    "value": "id",
+    "label": "Indonesian (id, in)"
+  },
+  {
+    "key": "it",
+    "value": "it",
+    "label": "Italian (it)"
+  },
+  {
+    "key": "ja",
+    "value": "ja",
+    "label": "Japanese (ja)"
+  },
+  {
+    "key": "kn",
+    "value": "kn",
+    "label": "Kannada (kn)"
+  },
+  {
+    "key": "ko",
+    "value": "ko",
+    "label": "Korean (ko)"
+  },
+  {
+    "key": "ms",
+    "value": "ms",
+    "label": "Malay (ms)"
+  },
+  {
+    "key": "ml",
+    "value": "ml",
+    "label": "Malayalam (ml)"
+  },
+  {
+    "key": "mr",
+    "value": "mr",
+    "label": "Marathi (mr)"
+  },
+  {
+    "key": "no",
+    "value": "no",
+    "label": "Norwegian (no)"
+  },
+  {
+    "key": "nb",
+    "value": "nb",
+    "label": "Norwegian Bokmål (nb)"
+  },
+  {
+    "key": "or",
+    "value": "or",
+    "label": "Oriya (or)"
+  },
+  {
+    "key": "fa",
+    "value": "fa",
+    "label": "Persian (fa)"
+  },
+  {
+    "key": "pl",
+    "value": "pl",
+    "label": "Polish (pl)"
+  },
+  {
+    "key": "pt",
+    "value": "pt",
+    "label": "Portuguese (pt)"
+  },
+  {
+    "key": "pa",
+    "value": "pa",
+    "label": "Punjabi (pa)"
+  },
+  {
+    "key": "ro",
+    "value": "ro",
+    "label": "Romanian (ro)"
+  },
+  {
+    "key": "rn",
+    "value": "rn",
+    "label": "Rundi (rn)"
+  },
+  {
+    "key": "ru",
+    "value": "ru",
+    "label": "Russian (ru)"
+  },
+  {
+    "key": "sr",
+    "value": "sr",
+    "label": "Serbian (sr)"
+  },
+  {
+    "key": "sk",
+    "value": "sk",
+    "label": "Slovak (sk)"
+  },
+  {
+    "key": "es",
+    "value": "es",
+    "label": "Spanish (es)"
+  },
+  {
+    "key": "sv",
+    "value": "sv",
+    "label": "Swedish (sv)"
+  },
+  {
+    "key": "tl",
+    "value": "tl",
+    "label": "Tagalog (tl)"
+  },
+  {
+    "key": "ta",
+    "value": "ta",
+    "label": "Tamil (ta)"
+  },
+  {
+    "key": "te",
+    "value": "te",
+    "label": "Telugu (te)"
+  },
+  {
+    "key": "th",
+    "value": "th",
+    "label": "Thai (th)"
+  },
+  {
+    "key": "tr",
+    "value": "tr",
+    "label": "Turkish (tr)"
+  },
+  {
+    "key": "uk",
+    "value": "uk",
+    "label": "Ukrainian (uk)"
+  },
+  {
+    "key": "ur",
+    "value": "ur",
+    "label": "Urdu (ur)"
+  },
+  {
+    "key": "uz",
+    "value": "uz",
+    "label": "Uzbek (uz)"
+  },
+  {
+    "key": "vi",
+    "value": "vi",
+    "label": "Vietnamese (vi)"
+  },
+  {
+    "key": "cy",
+    "value": "cy",
+    "label": "Welsh (cy)"
+  }
+]

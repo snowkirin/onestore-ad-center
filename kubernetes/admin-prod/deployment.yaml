@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: onestore-admin-front
+  labels:
+    app: onestore-admin-front
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: onestore-admin-front
+  template:
+    metadata:
+      labels:
+        app: onestore-admin-front
+    spec:
+      containers:
+      - name: nginx
+        image: 676857894110.dkr.ecr.ap-northeast-2.amazonaws.com/onestore-admin-front:prod
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+        livenessProbe:
+          httpGet:
+            path: /index.html
+            port: 80
+          initialDelaySeconds: 10
+          periodSeconds: 3
+        readinessProbe:
+          httpGet:
+            path: /index.html
+            port: 80
+          initialDelaySeconds: 10
+          periodSeconds: 3
+        volumeMounts:
+        - mountPath: /var/log/nginx
+          name: log
+      volumes:
+      - name: log
+        emptyDir: {}
+

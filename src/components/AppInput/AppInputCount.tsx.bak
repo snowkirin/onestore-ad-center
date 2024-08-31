@@ -1,0 +1,143 @@
+import React from 'react';
+import styled from 'styled-components';
+import { AppInput, AppInputGroup } from '@components/AppInput/AppInput';
+import { InputProps as RsuiteInputProps } from 'rsuite';
+import './style.less';
+
+interface InputCountProps extends RsuiteInputProps {
+  maxLength: number;
+}
+
+interface InputCountState {
+  value: any;
+  count: number;
+}
+
+const CurrentLengthText = styled.span`
+  color: var(--b700);
+  font-size: 12px;
+`;
+const TotalLengthText = styled.span`
+  color: var(--b000);
+  font-size: 12px;
+`;
+
+class AppInputCount extends React.Component<InputCountProps, InputCountState> {
+  state = {
+    value: '',
+    count: 0,
+  };
+
+  static getDerivedStateFromProps(props: InputCountProps, state: InputCountState) {
+    let newValue = state.value;
+
+    if (props.value !== undefined && typeof props.value !== 'number' && props.value.length <= props.maxLength)
+      newValue = props.value;
+
+    return {
+      ...state,
+      value: newValue,
+    };
+  }
+
+  onChange = (value: any, event: any) => {
+    if (value.length <= this.props.maxLength) {
+      if (this.props.onChange) {
+        this.props.onChange(value, event);
+      } else this.setState({ value });
+    }
+  };
+
+  render() {
+    const { props } = this;
+    const { state } = this;
+
+    const currentLength = state.value.toString().length;
+    return (
+      <AppInputGroup inside style={props.style} maxLength={props.maxLength}>
+        <AppInput {...props} value={state.value} onChange={this.onChange} />
+        <AppInputGroup.Addon>
+          <CurrentLengthText style={{ color: currentLength === 0 ? 'var(--b000)' : '' }}>
+            {currentLength}
+          </CurrentLengthText>
+          <TotalLengthText>{`/${props.maxLength}`}</TotalLengthText>
+        </AppInputGroup.Addon>
+      </AppInputGroup>
+    );
+  }
+}
+
+export default AppInputCount;
+
+
+
+
+// 2022-08-29
+
+import React, { useEffect, useMemo, useState } from 'react';
+import styled from 'styled-components';
+import { AppInput, AppInputGroup } from '@components/AppInput/AppInput';
+import { InputProps as RsuiteInputProps } from 'rsuite';
+
+interface InputCountProps extends RsuiteInputProps {
+  maxLength: number;
+  isCurrency?: boolean;
+  isNumber?: boolean;
+  style?: React.CSSProperties;
+}
+
+const REGEXP_NUMBER = /^[0-9]*$/;
+
+const CurrentLengthText = styled.span`
+  color: var(--b700);
+  font-size: 12px;
+`;
+const TotalLengthText = styled.span`
+  color: var(--b000);
+  font-size: 12px;
+`;
+
+const AppInputCount: React.FC<InputCountProps> = ({ maxLength, isCurrency, isNumber, style, ...props }) => {
+  const [value, setValue] = useState('');
+
+  // Regexp only Number
+  const onChange = (value: any, event: any) => {
+    if (value.length <= maxLength) {
+      if ((isCurrency || isNumber) && !REGEXP_NUMBER.test(value)) {
+        return false;
+      }
+      if (props.onChange) {
+        props.onChange(value, event);
+      } else {
+        setValue(value);
+      }
+    }
+  };
+
+  const currentLength = useMemo(() => {
+    return value.toString().length;
+  }, [value]);
+
+  useEffect(() => {
+    if (props.value) {
+      if (typeof props.value === 'string' && props.value.length <= maxLength) {
+        setValue(props.value);
+      }
+    }
+  }, [props.value]);
+
+  return (
+    <AppInputGroup inside style={style}>
+      {isCurrency && <AppInputGroup.Addon>₩</AppInputGroup.Addon>}
+      <AppInput {...props} value={value} onChange={onChange} />
+      <AppInputGroup.Addon>
+        <CurrentLengthText style={{ color: currentLength === 0 ? 'var(--b000)' : '' }}>
+          {currentLength}
+        </CurrentLengthText>
+        <TotalLengthText>{`/${maxLength}`}</TotalLengthText>
+      </AppInputGroup.Addon>
+    </AppInputGroup>
+  );
+};
+
+export default AppInputCount;

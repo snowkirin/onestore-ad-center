@@ -1,0 +1,17 @@
+[
+  { "label": "date", "key": "date" },
+  { "label": "campaign", "key": "campaign" },
+  { "label": "campaignId", "key": "campaignId" },
+  { "label": "campaignCountry", "key": "campaignCountry" },
+  { "label": "impression", "key": "impression" },
+  { "label": "click", "key": "click" },
+  { "label": "install", "key": "install" },
+  { "label": "action", "key": "action" },
+  { "label": "spend", "key": "spend" },
+  { "label": "ctr", "key": "ctr" },
+  { "label": "ipm", "key": "ipm" },
+  { "label": "cpc", "key": "cpc" },
+  { "label": "cpi", "key": "cpi" },
+  { "label": "cpa", "key": "cpa" },
+  { "label": "cpa", "key": "cpa" }
+]

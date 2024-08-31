@@ -1,0 +1,130 @@
+import cirCheck from '@assets/images/step/cir-check.svg';
+
+const AppStep = () => {
+  return (
+    <>
+      <div style={{ display: 'flex' }}>
+        <div style={{ display: 'inline-flex' }}>
+          {/*<img src={cirCheck} alt={'cirCheck'} style={{ width: '40px' }} />*/}
+          <div
+            style={{
+              display: 'inline-flex',
+              width: '40px',
+              height: '40px',
+              backgroundColor: '#e15656',
+              borderRadius: '20px',
+              textAlign: 'center',
+              fontSize: '24px',
+              color: '#fff',
+              justifyContent: 'center',
+              alignItems: 'center',
+              fontWeight: 'bold',
+              marginLeft: '6px',
+            }}
+          >
+            1
+          </div>
+        </div>
+        <div
+          style={{
+            display: 'inline-flex',
+            fontSize: '16px',
+            color: '#9a9a9a',
+            alignItems: 'center',
+            padding: '6px',
+            fontWeight: 'bold',
+          }}
+        >
+          가입 여부 확인
+        </div>
+        <div
+          className={'second'}
+          style={{
+            display: 'inline-flex',
+            fontSize: '16px',
+            color: '#9a9a9a',
+            alignItems: 'center',
+            padding: '9px',
+            fontWeight: 'bold',
+          }}
+        >
+          · · · ·
+        </div>
+        <div
+          style={{
+            display: 'inline-flex',
+            width: '40px',
+            height: '40px',
+            backgroundColor: '#e15656',
+            borderRadius: '20px',
+            textAlign: 'center',
+            fontSize: '24px',
+            color: '#fff',
+            justifyContent: 'center',
+            alignItems: 'center',
+            fontWeight: 'bold',
+            marginLeft: '6px',
+          }}
+        >
+          2
+        </div>
+        <div
+          style={{
+            display: 'inline-flex',
+            fontSize: '16px',
+            color: '#9a9a9a',
+            alignItems: 'center',
+            padding: '6px',
+            fontWeight: 'bold',
+          }}
+        >
+          정보 입력
+        </div>
+        <div
+          style={{
+            display: 'inline-flex',
+            fontSize: '16px',
+            color: '#9a9a9a',
+            alignItems: 'center',
+            padding: '9px',
+            fontWeight: 'bold',
+          }}
+        >
+          · · · ·
+        </div>
+        <div
+          style={{
+            display: 'inline-flex',
+            width: '40px',
+            height: '40px',
+            border: '3px solid #9a9a9a',
+            borderRadius: '20px',
+            textAlign: 'center',
+            fontSize: '24px',
+            color: '#9a9a9a',
+            justifyContent: 'center',
+            alignItems: 'center',
+            fontWeight: 'bold',
+            marginLeft: '6px',
+          }}
+        >
+          3
+        </div>
+        <div
+          style={{
+            display: 'inline-flex',
+            fontSize: '16px',
+            color: '#9a9a9a',
+            alignItems: 'center',
+            padding: '6px',
+            fontWeight: 'bold',
+          }}
+        >
+          가입 완료
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default AppStep;

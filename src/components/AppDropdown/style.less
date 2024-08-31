@@ -1,0 +1,33 @@
+.rs-dropdown-toggle.rs-btn.rs-btn-default {
+  width: 200px;
+  text-align: left;
+  height: 32px;
+}
+.rs-dropdown-menu {
+  width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.rs-dropdown-menu {
+  .rs-dropdown-item {
+    &:not(.rs-dropdown-item-disabled) {
+      .rs-dropdown-item-content {
+        &:hover,
+        &:focus {
+          color: var(--w000);
+          background-color: var(--primary-color);
+          transition: none;
+        }
+      }
+    }
+  }
+}
+&.rs-dropdown-disabled .rs-dropdown-toggle.rs-btn.rs-btn-subtle {
+  &,
+  &:focus,
+  &:active {
+    background-color: red;
+    color: blue;
+  }
+}

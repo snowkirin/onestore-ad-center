@@ -1,0 +1,7 @@
+[
+  { "label": "Everyone", "value": "Everyone" },
+  { "label": "Everyone 10+", "value": "Everyone 10+" },
+  { "label": "Teen", "value": "Teen" },
+  { "label": "Mature 17+", "value": "Mature 17+" },
+  { "label": "Adults Only", "value": "Adults Only" }
+]

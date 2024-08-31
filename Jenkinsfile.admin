@@ -1,0 +1,106 @@
+pipeline {
+    agent any
+    environment {
+        PROJECT_NAME = "onestore-admin-front"
+        SLACK_CHANNEL = "원스토어-devops"
+        DOCKER_REGISTRY = "676857894110.dkr.ecr.ap-northeast-2.amazonaws.com"
+        PROFILE = getProfile(env.BRANCH_NAME)
+        BUILD_PROFILE = getBuildProfile(env.BRANCH_NAME)
+        IMAGE_NAME = getImageName(env.PROJECT_NAME, env.BRANCH_NAME)
+    }
+    stages {
+        stage("Build") {
+            steps {
+                script {
+                    bitbucketStatusNotify(buildState: 'INPROGRESS')
+                    slackSend(channel: "${env.SLACK_CHANNEL}", color: "good", message: "${env.JOB_NAME} - #${env.BUILD_NUMBER} Started (<${env.BUILD_URL}|Open>)")
+                    sh "aws ecr get-login-password --region ap-northeast-2 | docker login --username AWS --password-stdin ${env.DOCKER_REGISTRY}"
+                    sh "docker build -t ${env.IMAGE_NAME} --build-arg BUILD_PROFILE=${env.BUILD_PROFILE} --no-cache --network=host ."
+                    sh "docker tag ${env.IMAGE_NAME} ${env.DOCKER_REGISTRY}/${env.IMAGE_NAME}"
+                    sh "docker push ${env.DOCKER_REGISTRY}/${env.IMAGE_NAME}"
+                }
+            }
+        }
+        stage("Deploy") {
+            when {
+                expression {
+                    return isDeployable("${env.BRANCH_NAME}")
+                }
+            }
+            steps {
+                script {
+                    slackSend(channel: "${env.SLACK_CHANNEL}", color: "good", message: "${env.JOB_NAME} - #${env.BUILD_NUMBER} Deploy stage is started (<${env.BUILD_URL}|Open>)")
+                    sh "kubectl apply -f kubernetes/admin-${env.PROFILE} -n ${env.PROFILE}"
+                    sh "kubectl rollout restart deployments/${env.PROJECT_NAME} -n ${env.PROFILE}"
+                    sh "kubectl rollout status deployments/${env.PROJECT_NAME} -n ${env.PROFILE}"
+                }
+            }
+        }
+    }
+    post {
+        success {
+            script {
+                bitbucketStatusNotify(buildState: "SUCCESSFUL")
+                slackSend(channel: "${env.SLACK_CHANNEL}", color: "good", message: "${env.JOB_NAME} - #${env.BUILD_NUMBER} Success (<${env.BUILD_URL}|Open>)")
+            }
+        }
+        unstable {
+            script {
+                bitbucketStatusNotify(buildState: "FAILED")
+                slackSend(channel: "${env.SLACK_CHANNEL}", color: "danger", message: "${env.JOB_NAME} - #${env.BUILD_NUMBER} Unstabled (<${env.BUILD_URL}|Open>)")
+            }
+        }
+        failure {
+            script {
+                bitbucketStatusNotify(buildState: "FAILED")
+                slackSend(channel: "${env.SLACK_CHANNEL}", color: "danger", message: "${env.JOB_NAME} - #${env.BUILD_NUMBER} Failed (<${env.BUILD_URL}|Open>)")
+            }
+        }
+        aborted {
+            script {
+                bitbucketStatusNotify(buildState: "FAILED")
+                slackSend(channel: "${env.SLACK_CHANNEL}", color: "warning", message: "${env.JOB_NAME} - #${env.BUILD_NUMBER} Aborted (<${env.BUILD_URL}|Open>)")
+            }
+        }
+        fixed {
+            script {
+                bitbucketStatusNotify(buildState: "SUCCESSFUL")
+                slackSend(channel: "${env.SLACK_CHANNEL}", color: "good", message: "${env.JOB_NAME} - #${env.BUILD_NUMBER} Back to normal (<${env.BUILD_URL}|Open>)")
+            }
+        }
+    }
+}
+
+def getProfile(String branchName) {
+    if("master".equals(branchName)) {
+        return "prod"
+    }
+    else {
+        return "dev"
+    }
+}
+
+def getBuildProfile(String branchName) {
+    if("master".equals(branchName)) {
+        return "build-prod-admin"
+    }
+    else {
+        return "build-dev-admin"
+    }
+}
+
+def isDeployable(String branchName) {
+    return ["dev", "master", "jenkins"].contains(branchName)
+}
+
+def getImageName(String projectName, String branchName) {
+    if("master".equals(branchName)) {
+        return String.format("%s:prod", projectName)
+    }
+    else if("jenkins".equals(branchName)) {
+        return String.format("%s:dev", projectName)
+    }
+    else {
+        return String.format("%s:%s", projectName, branchName)
+    }
+}

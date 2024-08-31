@@ -1,0 +1,195 @@
+import React from 'react';
+import { Input as RsuiteInput, InputGroup as RsuitInputGroup, InputProps as RsuiteInputProps } from 'rsuite';
+import styled from 'styled-components';
+import numberWithCommas from '@utils/common';
+
+const StyledInput = styled(RsuiteInput)`
+  border: 1px solid var(--border-line);
+  border-radius: 4px;
+  color: var(--text-color);
+  font-size: 12px;
+  padding: 9px 12px;
+  height: 30px;
+
+  &.rs-input-sm {
+    height: 28px;
+    font-size: 12px;
+  }
+
+  &::placeholder {
+    color: var(--sub-gray-color-disabled);
+    font-size: 12px;
+  }
+
+  &.rs-input[disabled] {
+    background-color: var(--disabled-input-background);
+    color: var(--sub-gray-color-disabled);
+  }
+
+  &.rs-input:focus:not(.error):not([disabled]),
+  &.rs-input:hover:not(.error):not([disabled]) {
+    border-color: var(--text-color);
+  }
+
+  &.error {
+    border: 1px solid var(--primary-color);
+  }
+`;
+const AppInputGroup = styled(RsuitInputGroup)`
+  &.rs-input-group {
+    border-radius: 4px;
+  }
+  &.rs-input-group:not(.rs-input-group-inside):not(.error) {
+    border: 1px solid var(--border-line);
+  }
+  &.rs-input-group:not(.rs-input-group-inside):not(.rs-input-group-disabled):hover,
+  &.rs-input-group:not(.rs-input-group-inside):not(.rs-input-group-disabled).rs-input-group-focus {
+    border-color: var(--text-color);
+  }
+
+  &.rs-input-group-disabled {
+    background-color: var(--disabled-input-background);
+    color: var(--sub-gray-color-disabled);
+  }
+  &.rs-input-group-disabled .rs-input-group-addon,
+  .rs-input-group-addon {
+    background-color: var(--w100);
+    color: var(--b100);
+  }
+
+  &.rs-input-group:not(.rs-input-group-inside) > :last-child,
+  &.rs-input-group.rs-input-group-inside .rs-input-group-btn:last-child {
+    border-bottom-right-radius: 4px;
+    border-top-right-radius: 4px;
+  }
+
+  &.rs-input-group:not(.rs-input-group-inside) > :first-child {
+    border-bottom-left-radius: 4px;
+    border-top-left-radius: 4px;
+  }
+
+  &.error,
+  &.error:not(.rs-input-group-inside):not(.rs-input-group-disabled):hover,
+  &.error:not(.rs-input-group-inside):not(.rs-input-group-disabled).rs-input-group-focus {
+    border: 1px solid var(--primary-color);
+  }
+
+  &.rs-input-group textarea ~ .rs-input-group-addon {
+    border-left: none;
+    left: auto;
+    right: 0;
+    top: auto;
+    bottom: 0;
+  }
+
+  &.rs-input-group.rs-input-group-inside .rs-input-group-addon {
+    padding: 10px 12px;
+    height: 30px;
+  }
+  &.rs-input-group.rs-input-group-inside .rs-input {
+    ${({ maxLength }) => {
+      return maxLength ? `padding-right:${maxLength.toString().length * 2}em` : '';
+    }};
+  }
+
+  &.rs-input-group-inside.rs-input-group-sm > .rs-input-group-btn {
+    padding: 2px 12px;
+    right: 0.5px !important;
+    top: 0.5px;
+    height: 25px;
+  }
+
+  &.rs-input-group-sm.rs-input-group:not(.rs-input-group-inside) > .rs-input-group-addon {
+    height: 26px;
+  }
+
+  &.rs-input-group-sm.rs-input-group:not(.rs-input-group-inside) > .rs-input {
+    height: 26px;
+  }
+`;
+const SelectAdSearchInput = styled(StyledInput)`
+  border: 1px solid var(--w500);
+  border-radius: 4px 4px 0 0;
+
+  &.rs-input:focus:not(.error):not([disabled]),
+  &.rs-input:hover:not(.error):not([disabled]) {
+    border: 1px solid var(--w500);
+    border-color: var(--w500);
+  }
+`;
+interface InputProps extends RsuiteInputProps {
+  numberOnly?: boolean;
+}
+
+interface InputState {
+  value: string;
+  isNumber: boolean;
+}
+
+class AppInput extends React.Component<InputProps> {
+  state = {
+    value: '',
+    isNumber: false,
+  };
+
+  static getDerivedStateFromProps(props: InputProps, state: InputState) {
+    const value = props.value !== undefined ? props.value : state.value;
+
+    return {
+      ...state,
+      value: value,
+    };
+  }
+
+  handleChange = (value: any, event: any) => {
+    let newValue = value;
+    if (this.props.numberOnly && value) {
+      const isNumber = /^[-]?[0-9]*$/;
+      newValue = isNumber.test(value) ? newValue : this.state.value;
+    }
+
+    if (this.props.onChange) {
+      this.props.onChange(newValue, event);
+      event.stopPropagation();
+      return;
+    }
+
+    this.setState({ value: newValue });
+  };
+
+  handleBlur = (event: any) => {
+    if (this.props.numberOnly) {
+      this.setState({
+        value: numberWithCommas(this.state.value),
+      });
+    }
+
+    if (this.props.onBlur) this.props.onBlur(event);
+  };
+
+  handleFocus = (event: any) => {
+    if (this.props.numberOnly) {
+      this.setState({
+        value: this.state.value.replace(/,/g, ''),
+      });
+    }
+
+    if (this.props.onFocus) this.props.onFocus(event);
+  };
+
+  render() {
+    const { props } = this;
+    const { numberOnly, ...restProps } = props;
+    return (
+      <StyledInput
+        {...restProps}
+        value={this.state.value}
+        onChange={this.handleChange}
+        onBlur={this.handleBlur}
+        onFocus={this.handleFocus}
+      />
+    );
+  }
+}
+
+export { AppInput, AppInputGroup, SelectAdSearchInput };

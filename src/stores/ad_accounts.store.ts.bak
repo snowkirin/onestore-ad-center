@@ -1,0 +1,85 @@
+import create from 'zustand';
+import { getAdAccounts } from '@apis/ad_account.api';
+
+interface adAccountsState {
+  isCallAdAccounts: boolean;
+  isEmptyAdAccounts: boolean;
+  adAccountsList: any[];
+  selectedAdAccount: string;
+  fetchAdAccounts: () => Promise<boolean>;
+  setIsCallAdAccounts: (bool: boolean) => void;
+  setIsEmptyAdAccounts: (bool: boolean) => void;
+  setAdAccountsList: (list: any[]) => void;
+  setselectedAdAccount: (id: string) => void;
+  initAdAccount: () => void;
+}
+
+const initState = {
+  isCallAdAccounts: false,
+  isEmptyAdAccounts: false,
+  adAccountsList: [],
+  selectedAdAccount: '',
+};
+
+export const useAdAccountStore = create<adAccountsState>((set, get) => ({
+  isCallAdAccounts: initState.isCallAdAccounts,
+  isEmptyAdAccounts: initState.isEmptyAdAccounts,
+  adAccountsList: initState.adAccountsList,
+  selectedAdAccount: initState.selectedAdAccount,
+
+  fetchAdAccounts: async () => {
+    if (!get().isCallAdAccounts) {
+      set({
+        isCallAdAccounts: true,
+      });
+
+      const result = await getAdAccounts();
+      if (result.data.ad_accounts && result.data.ad_accounts.length !== 0) {
+        const adAccountsOptionList = result.data.ad_accounts.map((item: any) => {
+          return {
+            value: item.id,
+            label: item.title,
+          };
+        });
+        set({
+          isEmptyAdAccounts: false,
+          adAccountsList: adAccountsOptionList,
+          selectedAdAccount: adAccountsOptionList[0].value,
+        });
+      } else {
+        set({
+          isEmptyAdAccounts: true,
+        });
+      }
+    }
+    return get().isEmptyAdAccounts;
+  },
+
+  setselectedAdAccount: (value: string) => {
+    set({
+      selectedAdAccount: value,
+    });
+  },
+  setIsCallAdAccounts: (data) => {
+    set(() => ({
+      isCallAdAccounts: data,
+    }));
+  },
+  setIsEmptyAdAccounts: (data) => {
+    set(() => ({
+      isEmptyAdAccounts: data,
+    }));
+  },
+  setAdAccountsList: (data) => {
+    set(() => ({
+      adAccountsList: data,
+    }));
+  },
+
+  // 로그아웃시 Ad Account 를 초기화 시킨다.
+  initAdAccount: () => {
+    set(() => ({
+      ...initState,
+    }));
+  },
+}));

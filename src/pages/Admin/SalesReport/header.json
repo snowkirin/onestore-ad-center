@@ -1,0 +1,12 @@
+[
+  { "label": "date", "key": "date" },
+  { "label": "account", "key": "account" },
+  { "label": "appName", "key": "appName" },
+  { "label": "campaignName", "key": "campaignName" },
+  { "label": "campaignId", "key": "campaignId" },
+  { "label": "impression", "key": "impression" },
+  { "label": "click", "key": "click" },
+  { "label": "install", "key": "install" },
+  { "label": "spend", "key": "spend" },
+  { "label": "currency", "key": "currency" }
+]

@@ -1,0 +1,78 @@
+import React, { useState } from 'react';
+import usePromise from 'react-use-promise';
+import { Uploader, UploaderProps } from 'rsuite';
+import { FileType } from 'rsuite/esm/Uploader';
+import styled from 'styled-components';
+import { AppButton } from '@components/AppButton';
+import AppTypography from '@components/AppTypography';
+import clsx from 'clsx';
+
+interface AppUploaderProps extends UploaderProps {}
+
+const StyledAppUploader = styled.div`
+  //.rs-uploader-trigger-btn {
+  //  font-size: 12px;
+  //  color: #e15656;
+  //  background-color: #fff;
+  //  border: 1px solid #e15656;
+  //}
+  .app-uploader__list {
+    border: 1px solid #9a9a9a;
+    border-radius: 4px;
+    padding: 5px;
+  }
+`;
+
+// const StyledAppUploader = styled(Uploader)``;
+
+const readUploadFileImage = (file: any) => {
+  const reader = new FileReader();
+  return new Promise((resolve, reject) => {
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      const image = new Image();
+      image.src = reader.result as string;
+      image.onload = () => {
+        resolve(`${image.width}x${image.height}`);
+      };
+    };
+  });
+};
+
+const AppUploader: React.FC<AppUploaderProps> = ({ ...rest }) => {
+  const [value, setValue] = useState<FileType[]>([]);
+  const [dimensions, setDimensions] = useState<any[]>([]);
+
+  const onChange = async (value: FileType[]) => {
+    const newArr = await Promise.all(value.map((file) => readUploadFileImage(file.blobFile)));
+    setDimensions(newArr);
+    setValue(value);
+  };
+
+  return (
+    <StyledAppUploader>
+      <Uploader
+        {...rest}
+        className={'app-uploader'}
+        autoUpload={false}
+        action=""
+        onChange={(value) => onChange(value)}
+        fileList={value}
+        fileListVisible={false}
+      >
+        <AppButton>업로드</AppButton>
+      </Uploader>
+      <div className={clsx('app-uploader__list')}>
+        {dimensions.length === 0 ? (
+          <AppTypography.Text>상단 업로드 버튼을 눌러 $FileType 파일을 업로드하세요.</AppTypography.Text>
+        ) : (
+          dimensions.map((dim, idx) => {
+            return <div key={idx}>{dim}</div>;
+          })
+        )}
+      </div>
+    </StyledAppUploader>
+  );
+};
+
+export default AppUploader;

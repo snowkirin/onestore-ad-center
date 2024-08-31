@@ -1,0 +1,11 @@
+<svg width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <path id="cimpxs2rma" d="M0 0h11.715v12H0z"/>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <mask id="p5lug8ay6b" fill="#fff">
+            <use xlink:href="#cimpxs2rma"/>
+        </mask>
+        <path d="m1.726 1.05 3.349 3.626c.09.097.14.224.14.357v5.391l1.502-1.126V5.033c0-.128.046-.25.13-.347L10.03 1.05H1.726zM4.689 12a.526.526 0 0 1-.525-.525V5.238L.139.882A.525.525 0 0 1 .525 0H11.19a.525.525 0 0 1 .396.871L7.767 5.23v4.33c0 .165-.078.321-.21.42l-2.553 1.915A.526.526 0 0 1 4.69 12z" fill="#666" mask="url(#p5lug8ay6b)"/>
+    </g>
+</svg>

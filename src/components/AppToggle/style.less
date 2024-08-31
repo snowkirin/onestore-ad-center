@@ -1,0 +1,41 @@
+&.rs-toggle-input {
+  &.rs-toggle-presentation {
+        background-color: var(--sub-gray-color-button);
+      }
+}
+
+.rs-toggle-checked .rs-toggle-presentation {
+    background-color: var(--primary-color)!important;
+  }
+
+
+&.rs-btn-toggle-sm {
+  height: 16px;
+  min-width: 28px;
+  border-radius: 20px;
+
+  &:after {
+    width: 14px;
+    height: 14px;
+    left: 1px;
+    top: 1px;
+    border-radius: 7px;
+  }
+
+  &.rs-btn-toggle-checked::after {
+    left: 100%;
+    margin-left: -15px;
+  }
+}
+
+&.rs-btn-toggle-checked {
+  background-color: var(--primary-color);
+}
+
+&.rs-btn-toggle-disabled {
+  background-color: var(--w500);
+  &.rs-btn-toggle-checked {
+    background-color: var(--primary-color);
+    opacity: 0.3;
+  }
+}

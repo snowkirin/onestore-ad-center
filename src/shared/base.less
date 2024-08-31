@@ -1,0 +1,521 @@
+@import '../assets/fonts/font';
+
+html, body {
+  height: 100vh;
+}
+#root {
+  height: 100%;
+}
+
+.rs-app-step {
+  display: flex;
+  justify-content: center;
+  .rs-steps-item-status-finish .rs-steps-item-icon-wrapper {
+    color: #fff;
+    background-color: #e15656;
+  }
+  .rs-steps-item-icon-wrapper > .rs-steps-item-icon .rs-icon {
+    font-size: 22px;
+    font-weight: bold;
+  }
+  .rs-steps-item {
+    padding-left: 40px;
+    flex: 0 0 auto !important;
+    padding-right: 34px;
+    &:not(:first-child) {
+      margin-left: 15px;
+    }
+    &:last-child {
+      padding-right: 0;
+    }
+  }
+  .rs-steps-item-icon-wrapper {
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
+    line-height: 41px;
+  }
+  .rs-steps-item-title {
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 40px;
+    margin-left: 6px;
+    padding-right: 15px;
+  }
+  .rs-steps-item-title::after {
+    height: 4px;
+    background-image: url('../assets/images/gray_dot.png');
+    border-top: 0 none;
+    width: 34px;
+    content: '';
+    top: 17px;
+    left: 100%;
+    //background-color: red;
+  }
+}
+
+//.rs-steps
+//.rs-steps-item-icon-wrapper {
+//  width: 40px;
+//  height: 40px;
+//}
+.rs-steps-horizontal .rs-steps-item-title::after {
+  height: 4px;
+  background-image: url('../assets/images/gray_dot.png');
+  border-top: 0 none;
+  width: 40px;
+  //background-color: red;
+}
+
+
+// 기본 레이아웃 구성 스타일
+.content__inner {
+  padding: 16px 30px 0 30px;
+}
+.row {
+  display: flex;
+  & + .row {
+    margin-top: 10px;
+  }
+  .col {
+    flex: 0 0 auto;
+    .text {
+      line-height: 32px;
+    }
+    &.col-label {
+      width: 120px;
+      &--big {
+        width: 150px;
+      }
+    }
+    &.col-input {
+      width: 450px;
+      .inner {
+        & + .inner {
+          margin-top: 30px;
+        }
+      }
+    }
+    &.col-extra {
+      flex: 1 0 auto;
+      position: relative;
+      margin-left: 10px;
+    }
+  }
+}
+
+
+textarea:focus-visible {
+  outline: 1px solid #222;
+  outline-offset: -1px;
+}
+// END 기본 레이아웃 구성 스타일
+
+p + p {
+  margin-top: 0;
+}
+
+.mb-6 {
+  margin-bottom: 6px;
+}
+
+.mb-10 {
+  margin-bottom: 10px;
+}
+.mb-20 {
+  margin-bottom: 20px;
+}
+
+.fs-11 {
+  font-size: 11px;
+  line-height: 17px;
+}
+.fs-12 {
+  font-size: 12px;
+  line-height: 19px;
+}
+.fs-14 {
+  font-size: 14px;
+  line-height: 22px;
+}
+.fs-16 {
+  font-size: 16px;
+  line-height: 25px;
+}
+.fs-18 {
+  font-size: 18px;
+  line-height: 28px;
+}
+
+
+.list-select {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px 14px 30px;
+}
+
+.app-row + .app-row {
+  margin-top: 30px;
+}
+
+
+
+
+
+/*
+  title: Rsuite SelectPicker Style
+  url: https://rsuitejs.com/components/select-picker/
+*/
+
+.rs-picker-date-menu {
+  border: 1px solid #9a9a9a;
+  border-radius: 4px;
+  box-shadow: none;
+  .rs-calendar-header-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #222;
+  }
+  .rs-calendar-table-cell-is-today .rs-calendar-table-cell-content {
+    box-shadow: inset 0 0 0 1px var(--primary-color);
+  }
+  .rs-calendar {
+    min-height: 220px;
+    .rs-calendar-body {
+      padding: 15px 12px 12px;
+      .rs-calendar-table-header-row .rs-calendar-table-cell-content {
+        color: #e1e1e1;
+      }
+      .rs-calendar-table-cell-content {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        padding: 2px;
+      }
+    }
+  }
+  .rs-picker-toolbar {
+    justify-content: center !important;
+    border-top: 1px solid #e2e2e2;
+    padding: 8px;
+    .rs-picker-toolbar-right {
+      button {
+        width: 60px;
+        height: 28px;
+        font-size: 12px;
+      }
+    }
+  }
+}
+.rs-picker-daterange-menu {
+  .rs-picker-daterange-panel {
+    .rs-picker-daterange-content {
+      .rs-picker-daterange-header {
+        display: none;
+      }
+    }
+  }
+  .rs-calendar {
+    .rs-calendar-body {
+      .rs-calendar-table-cell-in-range::before {
+        margin-top: 0;
+      }
+      .rs-calendar-table-cell-content {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        padding: 2px;
+      }
+    }
+  }
+  .rs-calendar-table-cell-is-today .rs-calendar-table-cell-content {
+    box-shadow: inset 0 0 0 1px var(--primary-color);
+  }
+  .rs-picker-toolbar {
+    justify-content: center !important;
+    border-top: 1px solid #e2e2e2;
+    padding: 8px;
+    .rs-picker-toolbar-right {
+      button {
+        width: 60px;
+        height: 28px;
+        font-size: 12px;
+      }
+    }
+  }
+}
+.rs-picker-date-menu {
+  .rs-calendar-month-view {
+    min-width: 278px;
+    .rs-calendar-header-title {
+      color: #e15656;
+    }
+    .rs-calendar-month-dropdown {
+      border-top: 1px solid #e2e2e2;
+    }
+    .rs-calendar-month-dropdown-row {
+      padding-left: 60px;
+      &:not(:last-child) {
+        border-bottom: 1px solid #e2e2e2;
+      }
+    }
+    .rs-calendar-month-dropdown-year {
+      font-size: 13px;
+      font-weight: 700;
+      top: calc(50% - 0.75em);
+      left: 20px;
+    }
+    .rs-calendar-month-dropdown-cell {
+      height: 32px;
+    }
+    .rs-calendar-month-dropdown-cell-content {
+      width: 26px;
+      height: 22px;
+      border-radius: 11px;
+      padding: 2px;
+    }
+  }
+}
+
+// Input의 Outline, box-shadow 삭제
+.rs-input:focus {
+  outline: 0 none;
+}
+.rs-input-group:not(.rs-input-group-disabled).rs-input-group-focus, .rs-input-group:focus-within {
+  outline: 0 none;
+}
+.rs-picker-toggle-active, .rs-picker.rs-picker-focused {
+  box-shadow: none;
+}
+.rs-picker-menu .rs-picker-search-bar .rs-picker-search-bar-input:focus {
+  outline: 0 none;
+}
+
+.rs-picker-select-menu-item {
+  padding: 7px 12px;
+  &.rs-picker-select-menu-item-active {
+    font-weight: 400;
+    color: var(--primary-color);
+    background-color: var(--disabled-color);
+  }
+}
+
+.rs-check-item:not(.rs-checkbox-disabled):hover, .rs-check-item:focus, .rs-check-item.rs-check-item-focus {
+  background-color: var(--disabled-color);
+}
+
+.rs-picker-check-menu-items {
+  .rs-check-item {
+    &.rs-checkbox-checked {
+      .rs-checkbox-checker {
+        > label {
+          font-weight: 400;
+        }
+      }
+    }
+  }
+}
+
+.rs-picker-toggle {
+  font-size: 12px;
+}
+
+
+/* Custom Style - DatePicker */
+
+.rs-picker-daterange-panel {
+  .rs-picker-toolbar {
+    flex-direction: column;
+    align-items: center !important;
+    padding-top: 8px;
+    .rs-picker-toolbar-ranges {
+      max-width: 100%;
+      padding-bottom: 8px;
+      margin-bottom: 8px;
+      border-bottom: 1px solid var(--guide-line);
+    }
+  }
+}
+
+//2022-10-06 공통 스타일 작업
+
+//scroll-bar
+.app-content.rs-content,.rs-picker-menu {
+  ::-webkit-scrollbar {
+    width: 10px; /* 스크롤바의 너비 */
+  }
+
+  ::-webkit-scrollbar-thumb {
+    height: 30%; /* 스크롤바의 길이 */
+    background-color: var(--primary-color);
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: var(--disable-color);
+  }
+}
+
+
+
+// 셀렉트 박스 공통
+.select-name {
+  display: flex;
+  width: 99px;
+  border: 1px solid var(--border-line);
+  border-radius: 4px 0 0 4px;
+  padding-left: 10px;
+  align-items: center;
+  color: var(--rs-text-primary);
+}
+
+
+// 이어진 검색창
+.app-input-borderRadius {
+  margin-left: -1px;
+  .rs-input-group {
+    border-radius: 0 4px 4px 0!important
+  }
+  .rs-picker-toggle.rs-btn.rs-btn-default.rs-btn-md {
+    border-radius: 4px 0 0 4px!important
+  }
+}
+
+
+
+// 쿠폰 생성 쪽 발급 대상 react-select 셀렉트 박스
+.css-1qfu80a-ValueContainer2 {
+  max-height: 150px;
+  overflow: auto!important;
+}
+
+.css-b62m3t-container {
+  width: 450px!important;
+  font-family: 'KoPubWorldDotum',sans-serif !important;
+  .css-1s2u09g-control {
+    border: 1px solid var(--border-line) !important
+  }
+  .css-1pahdxg-control {
+    box-shadow: 0 0 0 0 transparent !important;
+    border: 1px solid var(--border-line) !important
+  }
+}
+
+.css-2613qy-menu {
+  font-family: 'KoPubWorldDotum',sans-serif !important;
+  &:hover {
+    background-color: #267c97 !important;
+  }
+}
+
+
+// 고객문의 파일 업로드
+.rs-uploader-file-items {
+  border: 1px solid var(--b100);
+  height: 100px;
+  overflow-y: scroll;
+  width: 500px;
+}
+
+// 취소, 생성 공통 부분
+.create-cancel-btn {
+  position: relative;
+  margin-top: 60px;
+  //width: 716px;
+  display: flex;
+  justify-content: center;
+}
+
+// 계정 색깔별 구분 표시
+.status-circle-orange {
+  width: 10px;
+  height: 10px;
+  border-radius: 10px;
+  background-color: orange;
+}
+.status-circle-green {
+  width: 10px;
+  height: 10px;
+  border-radius: 10px;
+  background-color: green;
+}
+.status-circle-red {
+  width: 10px;
+  height: 10px;
+  border-radius: 10px;
+  background-color: red;
+}
+
+// 파일 업로드 아이템 (상위 클래스로 묶어줘야함!!)
+.advertiser-fileUpload {
+  .rs-uploader-file-items {
+    width: 200px;
+    height: 30px;
+    border: transparent;
+    overflow: hidden;
+    margin-top: -3px;
+    margin-left: -18px;
+  }
+  .rs-uploader-text .rs-uploader-file-item:hover {
+    background-color: transparent;
+  }
+  .rs-uploader-trigger.rs-uploader-trigger-customize {
+    margin-bottom: 0;
+  }
+}
+
+// 업로드 버튼 공통
+.rs-uploader-trigger-btn {
+  border: 1px solid var(--primary-color);
+  border-radius: 4px;
+  width: 60px;
+  height: 26px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--primary-color);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.rs-uploader-trigger.rs-uploader-trigger-customize {
+  margin-bottom: 10px;
+}
+
+// 입력 폼 디자인 강제 테두리 없애기
+.rs-input-group.rs-input-group-focus {
+  outline:none !important;
+}
+
+// 페이지네이션
+.rs-pagination-btn.rs-pagination-btn-active {
+  border: none!important;
+  color: var(--primary-color) !important;
+}
+
+// 공통 셀렉트 박스 모음
+.list-select-inquiry {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+// 고객 문의하기
+.rs-input-group-inside {
+  .inquiryTextArea.rs-input {
+    height: 300px;
+  }
+}
+
+// 라디오 버튼 비활성화 일때
+.rs-radio.rs-radio-disabled .rs-radio-inner:not(.rs-radio-checked)::before {
+  background-color: #e3e3e3;
+  border: 1px solid #c8c8c8 !important;
+}
+
+.input-error {
+  border: 1px solid var(--rs-state-error) !important;
+}
